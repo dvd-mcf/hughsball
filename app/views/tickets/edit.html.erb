@@ -1,0 +1,16 @@
+<div class="row">
+  <h1>Edit Ticket</h1>
+  <div class="span6 offset3">
+    <%= form_for @ticket, :url => {:action => "update", :id => @id} do |f| %>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+
+      <%= f.hidden_field :id, :value => @id %>
+
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

@@ -3,5 +3,37 @@
  *
  *= require_self
  */
-@import "framework_and_overrides";
+@import "bootstrap";
+@import "mod";
 
+$grayMediumLight: #eaeaea;
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $grayMediumLight;
+  color: gray-light;
+  a {
+    color: $gray;
+    &:hover {
+      color: $gray-darker;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
+}
+
+body { padding-top: 51px; }
+
+.form-group {
+  margin-left: 10px;
+}

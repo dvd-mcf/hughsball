@@ -1,21 +1,12 @@
 <div class="row">
   <div class="col-sm-6">
     <h1>
-      Edit User <small><%= "#{@user.username.capitalize} - id: #{@user.id}" %></small>
+      Edit User <small><%= "#{@user.email} - id: #{@user.id}" %></small>
     </h1>
     <p><%= link_to "Back to Users", admin_users_path %></p>
 
     <%= form_for [:admin, @user], :html => { :role => "form" } do |f| %>
-    
-    <div class="form-group">
-      <%= f.label :username %>
-      <div class="row">
-        <div class="col-sm-6">
-          <%= f.text_field :username, :autofocus => true, class: "form-control" %>  
-        </div>
-      </div>
-    </div>
-    
+
     <div class="form-group">
       <%= f.label :email %>
       <div class="row">

@@ -60,8 +60,8 @@ $btn-font-weight: normal;
 $btn-link-disabled-color: #cccccc;
 
 // Buttons: Default
-$btn-default-color: #ffffff;
-$btn-default-bg: #bbbbbb;
+$btn-default-color: #333;
+$btn-default-bg: #fff;
 $btn-default-border: #cccccc;
 
 // Buttons: Primary
@@ -284,7 +284,7 @@ $well-bg: #f5f5f5;
 
 // Jumbotron
 $jumbotron-padding: 30px; 
-$jumbotron-bg: #cccccc; 
+$jumbotron-bg: lighten(#000, 90.7%);
 $jumbotron-font-size: ceil($font-size-base * 1.5); 
 $jumbotron-color: $text-color; 
 $jumbotron-heading-color: $headings-color;
