@@ -1,14 +1,24 @@
 <div class="row">
-  <h1>Edit Ticket</h1>
+  <h1>Edit ticket</h1>
   <div class="span6 offset3">
-    <%= form_for @ticket, :url => {:action => "update", :id => @id} do |f| %>
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
+    <%= form_for @ticket, url: {:action => "update", :id => @id}, html: { id: "ticketEdit" + @id } do |f| %>
+      <div class="form-group">
+        <%= f.label :first_name %>
+        <div class="row">
+          <div class="col-sm-6">
+            <%= f.text_field :first_name, :autofocus => true, class: "form-control" %>
+          </div>
+        </div>
+      </div>
 
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
-
-      <%= f.hidden_field :id, :value => @id %>
+      <div class="form-group">
+        <%= f.label :last_name %>
+        <div class="row">
+          <div class="col-sm-6">
+            <%= f.text_field :last_name, :autofocus => true, class: "form-control" %>
+          </div>
+        </div>
+      </div>
 
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>

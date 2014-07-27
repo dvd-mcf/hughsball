@@ -2,19 +2,19 @@
 
 <div class="row">
   <h1>Tickets</h1>
-  <div class="col-s-7">
-    <h3> New Tickets </h3>
+  <div class="col-sm-7">
+    <h3>New Tickets </h3>
     <% if current_user.tickets.size  >= User::MAX_TICKETS%>
-      <p> You've already bought <%= current_user.tickets.size %> tickets, and can't buy any more. See you at the ball! </p>
+      <p>You've already bought <%= current_user.tickets.size %> tickets, and can't buy any more. See you at the ball! </p>
     <% else %>
-      <p> You've bought <%= pluralize(current_user.tickets.size, 'ticket') %> and can still buy <%= User::MAX_TICKETS - current_user.tickets.size %> more. </p>
+      <p>You've bought <%= pluralize(current_user.tickets.size, 'ticket') %> and can still buy <%= User::MAX_TICKETS - current_user.tickets.size %> more. </p>
       <%= form_tag(tickets_path, method: "post", role: 'form') do %>
         <div id="ticketForm">
         </div>
       <% end %>
     <% end %>
   </div>
-  <div class="col-s-5">
+  <div class="col-sm-5">
     <% if current_user.tickets.any? %>
       <h3> Purchased tickets (<%= current_user.tickets.count %>) </h3>
       <ol class="tickets">
@@ -32,7 +32,7 @@
   var  currTickets = 0;
 
   function ticketForm() {
-     return "<legend>" + ordinals[currTickets + userTickets] + " Ticket </legend> <div class=\"form-group\"> <label for=\"first_name_" + currTickets + "\">First name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][first_name] \" type=\"text\"\/> <\/div> <div class=\"form-group\"> <label for=\"last_name_" + currTickets + "\">Last name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][last_name] \" type=\"text\"\/><\/div> <div class=\"form-group\"> <label for=\"bod_num_" + currTickets + "\">Bod card number:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][bod_num] \" type=\"text\"\/><\/div>"; 
+     return "<legend>" + ordinals[currTickets + userTickets] + " Ticket </legend> <div class=\"form-group\"> <label for=\"first_name_" + currTickets + "\">First name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][first_name] \" type=\"text\"\/> <\/div> <div class=\"form-group\"> <label for=\"last_name_" + currTickets + "\">Last name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][last_name] \" type=\"text\"\/><\/div>"; 
   };
 
   if (currTickets + userTickets < maxTickets) {

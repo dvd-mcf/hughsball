@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-6 ">
+  <div class="col-sm-8 ">
     <h1>Change your password</h1>
 
     <%= form_for(resource, :as => resource_name,
@@ -13,7 +13,7 @@
       <div class="form-group">
         <%= f.label :password, "New password" %>
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-8">
             <%= f.password_field :password, class: "form-control" %>
           </div>
         </div>
@@ -22,14 +22,14 @@
       <div class="form-group">
         <%= f.label :password_confirmation, "Confirm new password" %>
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-8">
             <%= f.password_field :password_confirmation, class: "form-control" %>
           </div>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-8">
           <%= f.submit "Change my password", class: "btn btn-danger" %>
         </div>
       </div>
