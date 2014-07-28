@@ -11,6 +11,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'thin'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'select2-rails'
+gem 'jquery-turbolinks'
 
 
 group :doc do

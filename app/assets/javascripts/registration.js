@@ -1,7 +1,5 @@
 $(document).ready(function() { $("#user_college").select2(); });
 
-$('#user_college').select2({placeholder: "Select a State"});
-
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
