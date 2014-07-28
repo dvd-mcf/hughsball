@@ -26,8 +26,9 @@ Railstest::Application.configure do
   
   # Mailer
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => '209.222.30.252:3000' }
   config.action_mailer.delivery_method = :smtp
+
   config.action_mailer.smtp_settings = {
     address: ENV["SMTP_SERVER"],
     openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,

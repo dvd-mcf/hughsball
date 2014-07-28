@@ -8,6 +8,10 @@ gem 'jquery-rails', '~> 3.0.4'
 gem 'turbolinks', '~> 2.1.0'
 gem 'jbuilder', '~> 1.5.3'
 gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'thin'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'select2-rails'
+
 
 group :doc do
   gem 'sdoc', require: false
@@ -15,7 +19,7 @@ end
 
 # development gems
 group :development, :test do
-  gem 'sqlite3', '~> 1.3.8'    # dev & test database
+  gem 'sqlite3'
   gem 'figaro', '~> 0.7.0'     # env variables
 end
 
