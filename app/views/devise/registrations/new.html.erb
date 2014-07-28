@@ -12,7 +12,7 @@
         <%= f.label :email %>
         <div class="row">
           <div class="col-sm-8">
-            <%= f.email_field :email, class: "form-control" %>
+            <%= f.email_field :email, class: "form-control", id:"emailField" %>
           </div>
         </div>
       </div>
@@ -35,6 +35,58 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <%= f.label :college %>
+        <div class="row">
+          <div class="col-sm-8">
+            <select class="form-control" id="collegeSelect">
+              <option value="all-souls">All Soul's</option>
+              <option value="balliol">Balliol</option>
+              <option value="bfriars">Blackfriars</option>
+              <option value="bnc">Brasenose</option>
+              <option value="campion">Campion Hall</option>
+              <option value="Christ Church">Christ Church</option>
+              <option value="ccc">Corpus Christi</option>
+              <option value="exeter">Exeter</option>
+              <option value="gtc">Green Templeton</option>
+              <option value="hmc">Harris Manchester</option>
+              <option value="hertford">Hertford</option>
+              <option value="jesus">Jesus</option>
+              <option value="keble">Keble</option>
+              <option value="kellogg">Kellogg</option>
+              <option value="lmh">Lady Margaret Hall</option>
+              <option value="linacre">Linacre</option>
+              <option value="lincoln">Lincoln</option>
+              <option value="magd">Magdalen</option>
+              <option value="mansfield">Mansfield</option>
+              <option value="merton">Merton</option>
+              <option value="new">New</option>
+              <option value="nuffield">Nuffield</option>
+              <option value="oriel">Oriel</option>
+              <option value="pmb">Pembroke</option>
+              <option value="queens">Queen's</option>
+              <option value="rpc">Regent's Park</option>
+              <option value="st-annes">St Anne's</option>
+              <option value="st-benets">St Benet's Hall</option>
+              <option value="stcatz">St Catherine's</option>
+              <option value="stx">St Cross</option>
+              <option value="seh">St Edmund Hall</option>
+              <option value="st-hildas">St Hilda's</option>
+              <option value="st-hughs">St Hugh's</option>
+              <option value="sjc">St John's</option>
+              <option value="spc">St Peter's</option>
+              <option value="ssho">St Stephen's House</option>
+              <option value="somerville">Somerville</option>
+              <option value="trinity">Trinity</option>
+              <option value="univ">University</option>
+              <option value="wadham">Wadham</option>
+              <option value="wolfson">Wolfson</option>
+              <option value="worc">Worcester</option>
+              <option value="wycliffe">Wycliffe Hall</option>
+            </select>
+          </div>
+        </div>
+      </div>
       <div class="form-group">
         <div class="row">
           <div class="col-sm-8">
@@ -65,3 +117,4 @@
 
     </div>
   </div>
+
