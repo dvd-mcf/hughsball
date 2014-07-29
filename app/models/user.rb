@@ -23,7 +23,8 @@ class User < ActiveRecord::Base
   
   def self.search_and_order(search, page_number)
     if search
-      where("email LIKE ?", "%#{search.downcase}%").order(
+      q = "%#{search}%"
+      where("email LIKE ? OR first_name LIKE ? or last_name LIKE ? or college LIKE ?", q, q, q, q).order(
       admin: :desc, email: :asc
       ).page page_number
     else

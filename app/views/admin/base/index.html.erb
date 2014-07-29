@@ -1,12 +1,13 @@
 <h1>Admin <small>Home</small></h1>
 <div class="row">
-  <div class="col-sm-4">
+  <div class="col-sm-6">
     <h3>Menu</h3>
-    <h4><%= link_to "Users", admin_users_path %> <small>- <%= "#{@count} users" %></small></h4>
+    <h4><%= link_to "Users", admin_users_path %> <small>- <%= "#{@user_count} users" %></small></h4>
+    <h4><%= link_to "Tickets", admin_tickets_path %> <small>- <%= "#{@ticket_count} tickets" %></small></h4>
     <hr/>
   </div>
   
-  <div class="col-sm-4">
+  <div class="col-sm-6">
     <h3>Last Sign Ups</h3>
     <ul class="list-unstyled">
       <% @last_signups.each do |user| %>
@@ -17,8 +18,22 @@
       <% end %>
     </ul>
   </div>
-  
-  <div class="col-sm-4">
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <h3>Last Ticket Purchases</h3>
+    <ul class="list-unstyled">
+      <% @last_ticket_purchases.each do |ticket| %>
+      <li class="list-padded-bottom">
+        <%= link_to ticket.user.email, edit_admin_ticket_path(ticket) %><br/>
+        <small><%= time_ago_in_words(ticket.created_at)%> ago</small>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-sm-6">
     <h3>Last Sign Ins</h3>
     <ul class="list-unstyled">
       <% @last_signins.each do |user| %>
@@ -35,5 +50,4 @@
       <% end %>
     </ul>
   </div>
-  
-</div>
+</row>

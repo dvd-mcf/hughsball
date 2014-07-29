@@ -26,13 +26,17 @@ class TicketsController < ApplicationController
 
   def create
     @num_tickets = params[:tickets].size
+    @discount = 0
+    
+    if current_user.college == "st-hughs" && current_user.tickets.size == 0 then @discount = 500 end
     
     if @num_tickets > User::MAX_TICKETS
       redirect_to tickets_path
       flash[:error] = "You can only buy #{User::MAX_TICKETS} tickets."
     end
 
-    @amount = 9000 * @num_tickets
+    @amount = 9000 * @num_tickets - @discount
+
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
       :card  => params[:stripeToken]

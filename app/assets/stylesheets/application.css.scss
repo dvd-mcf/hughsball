@@ -6,7 +6,7 @@
  *= require select2-bootstrap
  */
 @import "bootstrap";
-@import "mod";
+@import "flatly";
 
 $grayMediumLight: #eaeaea;
 
@@ -34,7 +34,7 @@ footer {
   }
 }
 
-body { padding-top: 51px; }
+body { padding-top: 45px; }
 
 .form-group {
   margin-left: 10px;

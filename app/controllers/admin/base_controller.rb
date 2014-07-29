@@ -4,6 +4,9 @@ class Admin::BaseController < ApplicationController
   def index
     @last_signups = User.last_signups(10)
     @last_signins = User.last_signins(10)
-    @count = User.users_count 
+    @last_ticket_purchases = Ticket.last_ticket_purchases(10)
+    @user_count = User.users_count 
+    @ticket_count = Ticket.count
+
   end
 end

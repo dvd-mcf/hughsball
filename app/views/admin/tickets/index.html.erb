@@ -1,0 +1,43 @@
+<h1>Tickets <small>Admin</small></h1>
+<p><%= link_to "Back to Admin", admin_root_path %></p>
+
+<div class="text-center">
+  <p><%= page_entries_info @tickets %></p>
+  <%= paginate @tickets %>
+</div>
+
+<%= form_tag admin_tickets_path, method: 'get', html: {role: "form"} do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-sm btn-primary" %>
+    <%= link_to "All", admin_tickets_path, {class: "btn btn-sm btn-link"} %>
+  </p>
+<% end %>
+
+<table class="table table-striped">
+  <tr>
+    <th>Ticket ID</th>
+    <th>User's email</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Created At</th>
+  </tr>
+  
+  <% @tickets.each do |ticket| %>
+  
+  <tr>
+    <td><%= link_to ticket.id, edit_admin_ticket_path(ticket) %></td>
+    <td><%= link_to ticket.user.email, admin_user_path(ticket.user) %></td>
+    <td><%= ticket.first_name %>
+    <td><%= ticket.last_name %>
+    <td><%= time_ago_in_words(ticket.created_at) %></td>
+  </tr>
+  
+  <% end %>
+  
+</table>
+
+<div class="text-center">
+  <p><%= page_entries_info @tickets %></p>
+  <%= paginate @tickets %>
+</div>
