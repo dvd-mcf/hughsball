@@ -26,6 +26,10 @@ class Admin::UsersController < Admin::BaseController
     @user.email = new_params[:email]
     @user.password = new_params[:password] if new_params[:password].strip.length > 0
     @user.password_confirmation = new_params[:password_confirmation] if new_params[:password_confirmation].strip.length > 0
+    @user.first_name = new_params[:first_name]
+    @user.last_name = new_params[:last_name]
+    @user.college = new_params[:college]
+
     
     if current_user.id != @user.id
       @user.admin = new_params[:admin]=="0" ? false : true
@@ -62,6 +66,9 @@ class Admin::UsersController < Admin::BaseController
     :email,
     :password,
     :password_confirmation,
+    :first_name,
+    :last_name,
+    :college,
     :admin,
     :locked
     )
