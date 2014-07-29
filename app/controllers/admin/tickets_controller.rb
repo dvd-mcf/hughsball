@@ -26,6 +26,12 @@ class Admin::TicketsController < Admin::BaseController
       render :edit
     end
   end
+
+  def destroy
+    @ticket.destroy
+    flash[:notice] = "#{@ticket.first_name}'s ticket deleted."
+    redirect_to admin_tickets_path
+  end
   
   
   private 

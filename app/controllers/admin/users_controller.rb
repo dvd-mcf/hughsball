@@ -41,7 +41,12 @@ class Admin::UsersController < Admin::BaseController
       render :edit
     end
   end
-  
+
+  def destroy
+    @user.destroy
+    flash[:notice] = "#{@user.email} deleted."
+    redirect_to admin_users_path
+  end
   
   private 
   
