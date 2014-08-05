@@ -22,6 +22,9 @@ module Railstest
     
     # turn off warnings triggered by friendly_id
     I18n.enforce_available_locales = false
+
+    # enable compression
+    config.middleware.use Rack::Deflater
     
     # Test framework
     config.generators.test_framework :rspec
