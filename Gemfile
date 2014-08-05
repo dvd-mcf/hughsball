@@ -27,9 +27,6 @@ end
 # Paging
 gem 'kaminari', '~> 0.15.0'
 
-# Slugs and friendly id's
-gem 'friendly_id', '~> 5.0.2'
-
 # font-awesome
 gem 'font-awesome-sass', '~> 4.0.2'
 
