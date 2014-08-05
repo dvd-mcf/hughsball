@@ -1,8 +1,7 @@
 # Initial seed file to use with Devise User Model
 
 # Temporary admin account
-case Rails.env
-unless 'production'
+unless Rails.env.production?
   u = User.new(
       email: "admin@example.com",
       password: "1234",
