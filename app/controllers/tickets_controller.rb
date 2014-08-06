@@ -27,12 +27,23 @@ class TicketsController < ApplicationController
   def create
     @num_tickets = params[:tickets].size
     @discount = 0
+    @tickets = []
     
     if current_user.college == "st-hughs" && current_user.tickets.size == 0 then @discount = 500 end
     
     if @num_tickets > User::MAX_TICKETS
-      redirect_to tickets_path
       flash[:error] = "You can only buy #{User::MAX_TICKETS} tickets."
+      return redirect_to tickets_path
+    end
+
+    params[:tickets].each_value do |ticket|
+      @t = current_user.tickets.new(first_name: ticket["first_name"][" "].strip, last_name: ticket["last_name"][" "].strip)
+      if @t.valid?
+        @tickets += [@t]
+      else
+        flash[:error] = "Your tickets were problematic. You weren't charged."
+        return redirect_to tickets_path
+      end
     end
 
     @amount = 9000 * @num_tickets - @discount
@@ -47,16 +58,16 @@ class TicketsController < ApplicationController
       :description => current_user.email,
       :currency    => 'gbp'
     )
-  
-    params[:tickets].each_value do |ticket|
-      current_user.tickets.create!(first_name: ticket["first_name"][" "], last_name: ticket["last_name"][" "])
+
+    for t in @tickets
+      t.save!
     end
-      
+
     redirect_to tickets_path
 
     rescue Stripe::CardError => e
       flash[:error] = e.message
-      redirect_to tickets_path
+      return redirect_to tickets_path
   end
 
   def new
