@@ -14,13 +14,15 @@ class TicketsController < ApplicationController
   def update
     @ticket = current_user.tickets[params[:id].to_i]
     check_ticket_exists()
+    @id = params[:id]
 
     if @ticket.update_attributes(ticket_params)
       flash[:notice] = "Ticket updated!"
       redirect_to tickets_path
     else 
       @errors = @ticket.errors
-      render 'edit', id: params[:id]
+      flash.now[:error] = @errors.full_messages[0]
+      render 'edit'
     end
   end
 
