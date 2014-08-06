@@ -12,6 +12,7 @@ gem 'thin'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'select2-rails'
 gem 'jquery-turbolinks'
+gem 'figaro', '~> 0.7.0' 
 
 
 group :doc do
@@ -21,7 +22,6 @@ end
 # development gems
 group :development, :test do
   gem 'sqlite3'
-  gem 'figaro', '~> 0.7.0'     # env variables
 end
 
 # Paging
