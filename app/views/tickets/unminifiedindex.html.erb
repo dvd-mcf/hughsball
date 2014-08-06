@@ -32,33 +32,39 @@
   var  currTickets = 0;
   var  discount = 0;
 
+  var addTicketButton = "<a class=\"btn btn-success\" id=\"addTicketButton\">Add ticket<\/a>"
+  function ticketForm() {
+    return "<div id=\"ticketSubform" + currTickets + "\"><legend>" + ordinals[currTickets + userTickets] + " Ticket </legend> <div class=\"form-group\"> <label for=\"first_name_" + currTickets + "\">First name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][first_name] \" type=\"text\"\/> <\/div> <div class=\"form-group\"> <label for=\"last_name_" + currTickets + "\">Last name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][last_name] \" type=\"text\"\/> <\/div><\/div>"; 
+  }
+
   if ("<%= current_user.college %>" == "st-hughs"){
      discount = 500;
   }
 
-  function ticketForm() {
-     return "<legend>" + ordinals[currTickets + userTickets] + " Ticket </legend> <div class=\"form-group\"> <label for=\"first_name_" + currTickets + "\">First name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][first_name] \" type=\"text\"\/> <\/div> <div class=\"form-group\"> <label for=\"last_name_" + currTickets + "\">Last name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][last_name] \" type=\"text\"\/><\/div>"; 
-  };
-
   if (currTickets + userTickets < maxTickets) {
-    $('#ticketForm').append("<p> <a class=\"btn btn-success\" id=\"addTicketButton\">Add ticket</a> </p>");
+    $('#ticketForm').append("<p class=\"ticketButtons\">" + addTicketButton + "<\/p>");
   }
+
+  function addRemoveButton() {
+    $('.ticketButtons').append("<a class=\"btn btn-danger\" id=\"removeTicketButton\">Remove ticket<\/a>");
+  };
 
   function addTicketField() {
     if (currTickets == 0) {
       $('form').append("<p> <a class=\"btn btn-primary\", type=\"submit\", id=\"purchaseButton\">Purchase &raquo;</a> </p>");
     }
+
     currTickets++;
     $('#ticketForm').append(ticketForm());
 
+    if (currTickets == 1) {
+      addRemoveButton();
+    }
+    
     if (userTickets + currTickets >= maxTickets) {
       $('#addTicketButton').detach();
     }
   };
-
-  $('#addTicketButton').click(function(){
-    addTicketField();
-  });
 
   function pluralizeTickets() {
     if (currTickets == 1){
@@ -67,6 +73,21 @@
     return " Ball Tickets";
   };
 
+  $('.ticketButtons').on("click", "#addTicketButton", function(){
+    addTicketField();
+  });
+
+  $("form").on("click", "#removeTicketButton", function(event) {
+    $("#ticketSubform" + currTickets).detach();
+    currTickets--;
+    if (!$("#addTicketButton").length) {
+      $('.ticketButtons').prepend(addTicketButton);
+    }
+    if (currTickets == 0) {
+      $("#purchaseButton").detach();
+      $("#removeTicketButton").detach();
+    }
+  });
 
   $("form").on("click", "#purchaseButton", function(){
     var token = function(res){
@@ -88,3 +109,4 @@
     return false;
   });
 </script>
+
