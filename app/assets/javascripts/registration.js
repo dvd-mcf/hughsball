@@ -6,7 +6,7 @@ String.prototype.capitalize = function() {
 
 jQuery(function($){
   $('#emailField').change(function() {
-    var collegePatt = /@(.*).ox.ac.uk/;
+    var collegePatt = /@(.*)\.ox\.ac\.uk/;
     var email = $('#emailField').val();
     var names = email.split("@")[0].split(".");
 
