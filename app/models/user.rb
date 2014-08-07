@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   # Validations
   # :email
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_format_of :email, with: /\A(.+)@(.+)\.ox\.ac\.uk\Z/i, message: "must be from Oxford"
   validates :first_name, :last_name, :college, presence: true
   
   def self.paged(page_number)
