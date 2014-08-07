@@ -5,9 +5,9 @@
   <div class="col-sm-7">
     <h3>New Tickets </h3>
     <% if current_user.tickets.size  >= User::MAX_TICKETS%>
-      <p>You've already bought <%= current_user.tickets.size %> tickets, and can't buy any more. See you at the ball! </p>
+      <p>You've already bought <strong> <%= current_user.tickets.size %> </strong> tickets, and can't buy any more. See you at the ball! </p>
     <% else %>
-      <p>You've bought <%= pluralize(current_user.tickets.size, 'ticket') %> and can still buy <%= User::MAX_TICKETS - current_user.tickets.size %> more. </p>
+      <p id="ticketInfo">You've bought <strong> <%= pluralize(current_user.tickets.size, 'ticket') %> </strong> and can still buy <strong> <%= User::MAX_TICKETS - current_user.tickets.size %> </strong> more. </p>
       <%= form_tag(tickets_path, method: "post", role: 'form') do %>
         <div id="ticketForm">
         </div>
@@ -24,4 +24,96 @@
   </div>
 </div>
 
-<script type="text/javascript">var ordinals=["Zeroth","First","Second","Third","Fourth","Fifth"];var maxTickets=<%=User::MAX_TICKETS%>;var userTickets=<%= current_user.tickets.size %>;var currTickets=0;var discount=0;var addTicketButton="<a class=\"btn btn-success\" id=\"addTicketButton\">Add ticket<\/a>";function ticketForm(){return"<div id=\"ticketSubform"+currTickets+"\"><legend>"+ordinals[currTickets+userTickets]+" Ticket </legend> <div class=\"form-group\"> <label for=\"first_name_"+currTickets+"\">First name:<\/label> <input class=\"form-control\" name=\"tickets["+currTickets+"][first_name] \" type=\"text\"\/> <\/div> <div class=\"form-group\"> <label for=\"last_name_"+currTickets+"\">Last name:<\/label> <input class=\"form-control\" name=\"tickets["+currTickets+"][last_name] \" type=\"text\"\/> <\/div><\/div>"}if("<%=current_user.college %>"=="st-hughs"){discount=500}if(currTickets+userTickets<maxTickets){$('#ticketForm').append("<p class=\"ticketButtons\">"+addTicketButton+"<\/p>")}function addRemoveButton(){$('.ticketButtons').append("<a class=\"btn btn-danger\" id=\"removeTicketButton\">Remove ticket<\/a>")};function addTicketField(){if(currTickets==0){$('form').append("<p> <a class=\"btn btn-primary\", type=\"submit\", id=\"purchaseButton\">Purchase &raquo;</a> </p>")}currTickets++;$('#ticketForm').append(ticketForm());if(currTickets==1){addRemoveButton()}if(userTickets+currTickets>=maxTickets){$('#addTicketButton').detach()}};function pluralizeTickets(){if(currTickets==1){return" Ball Ticket"}return" Ball Tickets"};$('.ticketButtons').on("click","#addTicketButton",function(){addTicketField()});$("form").on("click","#removeTicketButton",function(event){$("#ticketSubform"+currTickets).detach();currTickets--;if(!$("#addTicketButton").length){$('.ticketButtons').prepend(addTicketButton)}if(currTickets==0){$("#purchaseButton").detach();$("#removeTicketButton").detach()}});$("form").on("click","#purchaseButton",function(){var token=function(res){var $input=$('<input type=hidden name=stripeToken />').val(res.id);$('form').append($input).submit()};StripeCheckout.open({key:'pk_test_9LtVL6Rlr6TxJaJld74wW4kO',amount:9000*currTickets-discount,name:'St Hugh\'s Ball',currency:'GBP',description:currTickets+pluralizeTickets(),panelLabel:'Checkout',email:"<%=j current_user.email%>",allowRememberMe:false,token:token});return false});</script>
+<script type="text/javascript">
+  var  ordinals = ["Zeroth", "First", "Second", "Third", "Fourth", "Fifth"];
+
+  var  maxTickets = <%= User::MAX_TICKETS %>;
+  var  userTickets = <%= current_user.tickets.size %>;
+  var  currTickets = 0;
+  var  discount = 0;
+
+  var addTicketButton = "<a class=\"btn btn-success\" id=\"addTicketButton\">Add ticket<\/a>"
+
+  if ("<%= current_user.college %>" == "st-hughs"){
+     discount = 500;
+  }
+
+  if (currTickets + userTickets < maxTickets) {
+    $('#ticketForm').append("<p class=\"ticketButtons\">" + addTicketButton + "<\/p>");
+  }
+
+  function addRemoveButton() {
+    $('.ticketButtons').append("<a class=\"btn btn-danger\" id=\"removeTicketButton\">Remove ticket<\/a>");
+  };
+
+  function addTicketField() {
+    currTickets++;
+
+    var ticketCost = "<p id=\"ticketCost\">You're purchasing <span class=numTickets><strong>" + pluralizeTickets()  + "</strong></span>, which " + ((currTickets == 1) ? "costs" : "cost")   + "<strong> &pound" + (9000 * currTickets - discount) / 100.00 + "</strong>.</span></p>"
+  
+    var ticketForm = "<div id=\"ticketSubform" + currTickets + "\"><legend>" + ordinals[currTickets + userTickets] + " Ticket </legend> <div class=\"form-group\"> <label for=\"first_name_" + currTickets + "\">First name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][first_name] \" type=\"text\"\/> <\/div> <div class=\"form-group\"> <label for=\"last_name_" + currTickets + "\">Last name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][last_name] \" type=\"text\"\/> <\/div><\/div>";
+
+    if (currTickets == 1) {
+      $('form').append("<p> <a class=\"btn btn-primary\", type=\"submit\", id=\"purchaseButton\">Purchase &raquo;</a> </p>");
+      $('#ticketInfo').append(ticketCost);
+    }
+    else {
+      $('#ticketCost').replaceWith(ticketCost);
+    }
+
+    $('#ticketForm').append(ticketForm);
+
+    if (currTickets == 1) {
+      addRemoveButton();
+    }
+    
+    if (userTickets + currTickets >= maxTickets) {
+      $('#addTicketButton').detach();
+    }
+  };
+
+  function pluralizeTickets() {
+    if (currTickets == 1){
+       return "1 ticket";
+    }
+    return currTickets + " tickets";
+  };
+
+  $('.ticketButtons').on("click", "#addTicketButton", function(){
+    addTicketField();
+  });
+
+  $('form').on('click', '#removeTicketButton', function(event) {
+    $('#ticketSubform' + currTickets).detach();
+    currTickets--;
+    if (!$('#addTicketButton').length) {
+      $('.ticketButtons').prepend(addTicketButton);
+    }
+    if (currTickets == 0) {
+      $('#purchaseButton').detach();
+      $('#ticketCost').detach();
+      $('#removeTicketButton').detach();
+    }
+  });
+
+  $('form').on('click', '#purchaseButton', function(){
+    var token = function(res){
+      var $input = $('<input type=hidden name=stripeToken />').val(res.id);
+      $('form').append($input).submit();
+    };
+
+    StripeCheckout.open({
+      key:         'pk_test_9LtVL6Rlr6TxJaJld74wW4kO',
+      amount:      9000 * currTickets - discount,
+      name:        'St Hugh\'s Ball',
+      currency:    'GBP',
+      description: pluralizeTickets(),
+      panelLabel:  'Checkout',
+      email:       '<%= j current_user.email %>',
+      allowRememberMe: false,
+      token:       token
+    });
+    return false;
+  });
+</script>
+
