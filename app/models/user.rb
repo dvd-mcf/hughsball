@@ -13,11 +13,19 @@ class User < ActiveRecord::Base
   paginates_per 100
   
   # Validations
-  # :email
+  @@college_regex = /\A(.+)@(.+)\.ox\.ac\.uk\Z/  
+
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  validates_format_of :email, with: /\A(.+)@(.+)\.ox\.ac\.uk\Z/i, message: "must be from Oxford"
+  validates_format_of :email, with: @@college_regex,  message: "must be from Oxford"
   validates :first_name, :last_name, :college, presence: true
+  validate :hughs_only_if_email
   
+  def hughs_only_if_email
+    match = email.match(@@college_regex)
+    if match then email_college = match[2] else email_college = "" end
+    errors.add(:base, "Email isn't from Hugh's") if (college == "st-hughs") && (email_college != "st-hughs")
+  end
+
   def self.paged(page_number)
     order(admin: :desc, email: :asc).page page_number
   end
@@ -45,4 +53,5 @@ class User < ActiveRecord::Base
   def self.users_count
     where("admin = ? AND locked = ?",false,false).count
   end
+
 end
