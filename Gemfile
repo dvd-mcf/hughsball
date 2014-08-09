@@ -13,6 +13,7 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'select2-rails'
 gem 'jquery-turbolinks'
 gem 'figaro', '~> 0.7.0' 
+gem 'auto_strip_attributes'
 
 
 group :doc do
