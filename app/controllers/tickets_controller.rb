@@ -39,11 +39,11 @@ class TicketsController < ApplicationController
     end
 
     params[:tickets].each_value do |ticket|
-      @t = current_user.tickets.new(first_name: ticket["first_name"][" "].strip, last_name: ticket["last_name"][" "].strip)
+      @t = current_user.tickets.new(first_name: ticket["first_name"][" "], last_name: ticket["last_name"][" "])
       if @t.valid?
         @tickets += [@t]
       else
-        flash[:error] = "Your tickets were problematic. You weren't charged."
+        flash[:error] = "Your tickets details were problematic. You weren't charged."
         return redirect_to tickets_path
       end
     end

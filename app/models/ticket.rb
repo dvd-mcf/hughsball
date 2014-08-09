@@ -1,5 +1,10 @@
 class Ticket < ActiveRecord::Base
   belongs_to :user
+
+  # Strip whitespaces
+  auto_strip_attributes :first_name, :last_name
+
+  # Validations
   validates :first_name, :last_name, :user_id, presence: true
 
   # Pagination

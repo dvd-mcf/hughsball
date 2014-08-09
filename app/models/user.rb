@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   # Pagination
   paginates_per 100
   
+  # Strip whitespaces
+  auto_strip_attributes :email, :first_name, :last_name
+
   # Validations
   @@college_regex = /\A(.+)@(.+)\.ox\.ac\.uk\Z/  
 
