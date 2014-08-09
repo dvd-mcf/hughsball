@@ -34,7 +34,7 @@
 
   var addTicketButton = "<a class=\"btn btn-success\" id=\"addTicketButton\">Add ticket<\/a>"
 
-  if ("<%= current_user.college %>" == "st-hughs"){
+  if ("<%= current_user.college %>" == "st-hughs" && !userTickets){
      discount = 500;
   }
 
