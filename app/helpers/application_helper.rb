@@ -1,7 +1,7 @@
 module ApplicationHelper
   def title(value)
     unless value.nil?
-      @title = "#{value} | Railstest"      
+      @title = "#{value} | St Hugh's Ball"      
     end
   end
 end
