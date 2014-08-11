@@ -1,26 +1,30 @@
 <script src="https://checkout.stripe.com/checkout.js"></script>
 
 <div class="row">
-  <h1>Tickets</h1>
-  <div class="col-sm-7">
-    <h3>New Tickets </h3>
-    <% if current_user.tickets.size  >= User::MAX_TICKETS%>
-      <p>You've already bought <strong> <%= current_user.tickets.size %> </strong> tickets, and can't buy any more. See you at the ball! </p>
-    <% else %>
-      <p id="ticketInfo">You've bought <strong> <%= pluralize(current_user.tickets.size, 'ticket') %> </strong> and can still buy <strong> <%= User::MAX_TICKETS - current_user.tickets.size %> </strong> more. </p>
-      <%= form_tag(tickets_path, method: "post", role: 'form') do %>
-        <div id="ticketForm">
-        </div>
-      <% end %>
-    <% end %>
+  <div class="col-sm-12">
+    <h1>Tickets</h1>
   </div>
-  <div class="col-sm-5">
-    <% if current_user.tickets.any? %>
-      <h3> Purchased tickets (<%= current_user.tickets.count %>) </h3>
-      <ol class="tickets">
-        <%= render current_user.tickets %>
-      </ol>
-    <% end %>
+    <div class="container">
+    <div class="col-sm-7">
+      <h3>New Tickets </h3>
+      <% if current_user.tickets.size  >= User::MAX_TICKETS%>
+        <p>You've already bought <strong> <%= current_user.tickets.size %> </strong> tickets, and can't buy any more. See you at the ball! </p>
+      <% else %>
+        <p id="ticketInfo">You've bought <strong> <%= pluralize(current_user.tickets.size, 'ticket') %> </strong> and can still buy <strong> <%= User::MAX_TICKETS - current_user.tickets.size %> </strong> more. </p>
+        <%= form_tag(tickets_path, method: "post", role: 'form') do %>
+          <div id="ticketForm">
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-sm-5">
+      <% if current_user.tickets.any? %>
+        <h3> Purchased tickets (<%= current_user.tickets.count %>) </h3>
+        <ol class="tickets">
+          <%= render current_user.tickets %>
+        </ol>
+      <% end %>
+    </div>
   </div>
 </div>
 
