@@ -59,11 +59,10 @@ body {
 .featurette-heading {
   font-weight: 300;
   line-height: 1;
-  letter-spacing: -1px;
 }
 
 .featurette {
-  padding-top: 75px;
+  padding-top: 50px;
   margin-top: -50px;
 }
 
