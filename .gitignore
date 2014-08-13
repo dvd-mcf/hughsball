@@ -30,4 +30,4 @@ doc/
 .secret
 
 # Ignore precompiled assets
-/public/assets
+/public/assets/**
