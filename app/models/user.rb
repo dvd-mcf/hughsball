@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   validates_format_of :email, with: @@college_regex,  message: "must be from Oxford", unless: "admin?"
   validates :first_name, :last_name, :college, presence: true
-  validate :hughs_only_if_email
+  validate :hughs_only_if_email, unless: "admin?"
   
   def hughs_only_if_email
     match = email.match(@@college_regex)
