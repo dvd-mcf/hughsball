@@ -36,6 +36,8 @@
   var  currTickets = 0;
   var  discount = 0;
 
+    function ticketCost() { return "<p id=\"ticketCost\">You're purchasing <span class=numTickets><strong>" + pluralizeTickets()  + "</strong></span>, which " + ((currTickets == 1) ? "costs" : "cost")   + "<strong> &pound" + (9000 * currTickets - discount) / 100.00 + "</strong>.</span></p>"; }
+  
   var addTicketButton = "<a class=\"btn btn-success\" id=\"addTicketButton\">Add ticket<\/a>"
 
   if ("<%= current_user.college %>" == "st-hughs" && !userTickets){
@@ -53,16 +55,14 @@
   function addTicketField() {
     currTickets++;
 
-    var ticketCost = "<p id=\"ticketCost\">You're purchasing <span class=numTickets><strong>" + pluralizeTickets()  + "</strong></span>, which " + ((currTickets == 1) ? "costs" : "cost")   + "<strong> &pound" + (9000 * currTickets - discount) / 100.00 + "</strong>.</span></p>"
-  
     var ticketForm = "<div id=\"ticketSubform" + currTickets + "\"><legend>" + ordinals[currTickets + userTickets] + " Ticket </legend> <div class=\"form-group\"> <label for=\"first_name_" + currTickets + "\">First name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][first_name] \" type=\"text\"\/> <\/div> <div class=\"form-group\"> <label for=\"last_name_" + currTickets + "\">Last name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][last_name] \" type=\"text\"\/> <\/div><\/div>";
 
     if (currTickets == 1) {
       $('form').append("<p> <a class=\"btn btn-primary\", type=\"submit\", id=\"purchaseButton\">Purchase &raquo;</a> </p>");
-      $('#ticketInfo').append(ticketCost);
+      $('#ticketInfo').append(ticketCost());
     }
     else {
-      $('#ticketCost').replaceWith(ticketCost);
+      $('#ticketCost').replaceWith(ticketCost());
     }
 
     $('#ticketForm').append(ticketForm);
@@ -97,6 +97,9 @@
       $('#purchaseButton').detach();
       $('#ticketCost').detach();
       $('#removeTicketButton').detach();
+    }
+    else {
+      $('#ticketCost').replaceWith(ticketCost());
     }
   });
 
