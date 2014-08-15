@@ -11,9 +11,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## Lock
       t.boolean :locked, :null => false, :default => false
       
-      ## Friendly_id
-      t.string :slug
-
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
