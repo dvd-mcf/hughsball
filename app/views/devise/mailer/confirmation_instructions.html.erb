@@ -1,5 +1,8 @@
-<p>Welcome <%= @user.first_name.capitalize %>!</p>
+<p>Dear <%= @user.first_name.capitalize %>,</p>
 
-<p>You need to confirm your account email through the link below:</p>
+<p>Thank you for registering for St. Hugh's Ball. Please confirm your account via the link below. </p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>Sincerely,</p>
+<p>St Hugh's Ball Committee</p>
