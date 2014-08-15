@@ -3,7 +3,7 @@
 en:
   devise:
     confirmations:
-      confirmed: "Your account was confirmed. Thanks!"
+      confirmed: "Thank you for the confirmaiton! Please log in below."
       send_instructions: "We've sent you an email to confirm your account."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions about how to confirm your account in a few minutes."
     failure:
@@ -41,8 +41,8 @@ en:
       update_needs_confirmation: "We've sent you an email to confirm your new email address."
       updated: "Account updated."
     sessions:
-      signed_in: "Welcome! Thanks for signing in."
-      signed_out: "Bye! Thanks for signing out."
+      signed_in: "Welcome! Thank you for signing in!"
+      signed_out: "Bye! Thank you for visiting!"
     unlocks:
       send_instructions: "You will receive an email with instructions about how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions about how to unlock it in a few minutes."
