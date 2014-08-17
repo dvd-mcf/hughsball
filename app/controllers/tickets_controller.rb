@@ -27,13 +27,14 @@ class TicketsController < ApplicationController
   end
 
   def create
+    @curr_tickets = current_user.tickets.size
     @num_tickets = params[:tickets].size
     @discount = 0
     @tickets = []
     
     if current_user.college == "st-hughs" && current_user.tickets.size == 0 then @discount = 500 end
     
-    if @num_tickets > User::MAX_TICKETS
+    if @num_tickets + @curr_tickets > User::MAX_TICKETS
       flash[:error] = "You can only buy #{User::MAX_TICKETS} tickets."
       return redirect_to tickets_path
     end
@@ -69,7 +70,8 @@ class TicketsController < ApplicationController
     mailchimp = Mailchimp::API.new(ENV["MAILCHIMP_API_KEY"])
     mailchimp.lists.subscribe(ENV["POST_PURCHASE_LIST_TEST"], {"email" => current_user.email},
                               {"FNAME" => current_user.first_name.capitalize, "LNAME" => current_user.last_name.capitalize,
-                                "COLLEGE" => current_user.college}, 'html', false, true, true, false)
+                               "COLLEGE" => current_user.college, "NUM_TICKET" => @curr_tickets + @num_tickets },
+                              "html", false, true, true, false)
 
     redirect_to tickets_path
 
