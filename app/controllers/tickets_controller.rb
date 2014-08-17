@@ -68,7 +68,8 @@ class TicketsController < ApplicationController
     # add to mailing list
     mailchimp = Mailchimp::API.new(ENV["MAILCHIMP_API_KEY"])
     mailchimp.lists.subscribe(ENV["POST_PURCHASE_LIST_TEST"], {"email" => current_user.email},
-                              nil, 'html', false, true, true, false)
+                              {"FNAME" => current_user.first_name.capitalize, "LNAME" => current_user.last_name.capitalize,
+                                "COLLEGE" => current_user.college}, 'html', false, true, true, false)
 
     redirect_to tickets_path
 
