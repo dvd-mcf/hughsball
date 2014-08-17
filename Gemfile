@@ -14,6 +14,7 @@ gem 'select2-rails'
 gem 'jquery-turbolinks'
 gem 'figaro', '~> 0.7.0' 
 gem 'auto_strip_attributes'
+gem 'mailchimp-api', require: 'mailchimp'
 
 
 group :doc do
