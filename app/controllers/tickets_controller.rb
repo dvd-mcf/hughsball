@@ -65,6 +65,11 @@ class TicketsController < ApplicationController
       t.save!
     end
 
+    # add to mailing list
+    mailchimp = Mailchimp::API.new(ENV["MAILCHIMP_API_KEY"])
+    mailchimp.lists.subscribe(ENV["POST_PURCHASE_LIST_TEST"], {"email" => current_user.email},
+                              nil, 'html', false, true, true, false)
+
     redirect_to tickets_path
 
     rescue Stripe::CardError => e
