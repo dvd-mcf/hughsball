@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   validate :hughs_only_if_email, unless: "admin?"
   
   def hughs_only_if_email
+    if !email then return end
     match = email.match(@@college_regex)
     if match then email_college = match[2] else email_college = "" end
     errors.add(:base, "Email isn't from Hugh's") if (college == "st-hughs") && (email_college != "st-hughs")
