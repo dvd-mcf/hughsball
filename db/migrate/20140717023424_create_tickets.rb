@@ -7,7 +7,6 @@ class CreateTickets < ActiveRecord::Migration
 
       t.timestamps
     end
-    execute "UPDATE SQLITE_SEQUENCE SET seq = 1000 WHERE name = 'tickets';"
     add_index :tickets, [:user_id, :created_at]
   end
 end
