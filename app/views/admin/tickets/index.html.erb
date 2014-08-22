@@ -20,6 +20,8 @@
     <th>User's email</th>
     <th>First Name</th>
     <th>Last Name</th>
+    <th>Ticket holder's email</th>
+    <th>Wristband ID</th>
     <th>Created At</th>
   </tr>
   
@@ -30,6 +32,8 @@
     <td><%= link_to ticket.user.email, admin_user_path(ticket.user) %></td>
     <td><%= ticket.first_name %>
     <td><%= ticket.last_name %>
+    <td><%= ticket.email %>
+    <td><%= ticket.wristband_id %>
     <td><%= time_ago_in_words(ticket.created_at) %></td>
   </tr>
   

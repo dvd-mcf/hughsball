@@ -5,7 +5,8 @@ class Ticket < ActiveRecord::Base
   auto_strip_attributes :first_name, :last_name
 
   # Validations
-  validates :first_name, :last_name, :user_id, presence: true
+  validates :first_name, :last_name, :email, :user_id, presence: true
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
   # Pagination
   paginates_per 100

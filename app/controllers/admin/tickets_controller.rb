@@ -46,7 +46,9 @@ class Admin::TicketsController < Admin::BaseController
   def ticket_params
     params.require(:ticket).permit(
     :first_name,
-    :last_name
+    :last_name,
+    :email,
+    :wristband_id
     )
   end
   

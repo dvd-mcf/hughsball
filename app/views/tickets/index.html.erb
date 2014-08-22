@@ -55,7 +55,7 @@
   function addTicketField() {
     currTickets++;
 
-    var ticketForm = "<div id=\"ticketSubform" + currTickets + "\"><legend>" + ordinals[currTickets + userTickets] + " Ticket </legend> <div class=\"form-group\"> <label for=\"first_name_" + currTickets + "\">First name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][first_name] \" type=\"text\"\/> <\/div> <div class=\"form-group\"> <label for=\"last_name_" + currTickets + "\">Last name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][last_name] \" type=\"text\"\/> <\/div><\/div>";
+    var ticketForm = "<div id=\"ticketSubform" + currTickets + "\"><legend>" + ordinals[currTickets + userTickets] + " Ticket </legend> <div class=\"form-group\"> <label for=\"first_name_" + currTickets + "\">First name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][first_name] \" type=\"text\"\/> <\/div> <div class=\"form-group\"> <label for=\"last_name_" + currTickets + "\">Last name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][last_name] \" type=\"text\"\/> <\/div> <div class=\"form-group\"> <label for=\"email" + currTickets + "\">Email:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][email] \" type=\"text\"\/> <\/div><\/div>";
 
     if (currTickets == 1) {
       $('form').append("<p> <a class=\"btn btn-primary\", type=\"submit\", id=\"purchaseButton\">Purchase &raquo;</a> </p>");

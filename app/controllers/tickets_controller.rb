@@ -40,7 +40,8 @@ class TicketsController < ApplicationController
     end
 
     params[:tickets].each_value do |ticket|
-      @t = current_user.tickets.new(first_name: ticket["first_name"][" "], last_name: ticket["last_name"][" "])
+      @t = current_user.tickets.new(first_name: ticket["first_name"][" "],
+                                    last_name: ticket["last_name"][" "], email: ticket["email"][" "])
       if @t.valid?
         @tickets += [@t]
       else
@@ -85,7 +86,7 @@ class TicketsController < ApplicationController
 
   private
     def ticket_params
-      params.require(:ticket).permit(:first_name, :last_name)
+      params.require(:ticket).permit(:first_name, :last_name, :email)
     end
    
     def check_ticket_exists
