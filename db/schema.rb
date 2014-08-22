@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140727095411) do
+ActiveRecord::Schema.define(version: 20140822054746) do
 
   create_table "tickets", force: true do |t|
     t.string   "first_name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140727095411) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "wristband_id"
   end
 
   add_index "tickets", ["user_id", "created_at"], name: "index_tickets_on_user_id_and_created_at"
@@ -51,5 +52,6 @@ ActiveRecord::Schema.define(version: 20140727095411) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["slug"], name: "index_users_on_slug", unique: true
 
 end
