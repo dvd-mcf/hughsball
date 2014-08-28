@@ -18,8 +18,8 @@ class Ticket < ActiveRecord::Base
   def self.search_and_order(search, page_number)
     if search
       q = "%#{search}%"
-      joins(:user).where('tickets.first_name LIKE ? OR tickets.last_name LIKE ? OR users.email LIKE ?',
-         q, q, q).order(id: :asc).page page_number
+      joins(:user).where('tickets.first_name LIKE ? OR tickets.last_name LIKE ? OR tickets.wristband_id LIKE ? 
+			 OR tickets.email LIKE ? OR users.email LIKE ?', q, q, q, q, q).order(id: :asc).page page_number
     else
       order(id: :asc).page page_number
     end
