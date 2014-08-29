@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   # Maximum number of tickets permittable
-  MAX_TICKETS = 2
+  MAX_TICKETS = 4
 
   has_many :tickets, dependent: :destroy
   
