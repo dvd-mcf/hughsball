@@ -1,5 +1,6 @@
 class Ticket < ActiveRecord::Base
   belongs_to :user
+  after_create :subscribe_mailchimp
 
   # Strip whitespaces
   auto_strip_attributes :first_name, :last_name
@@ -28,4 +29,13 @@ class Ticket < ActiveRecord::Base
   def self.last_ticket_purchases(count)
     order(created_at: :desc).limit(count)
   end
+
+  private
+    def subscribe_mailchimp
+          puts :email
+          mailchimp = Mailchimp::API.new(ENV["MAILCHIMP_API_KEY"])
+          mailchimp.lists.subscribe(ENV["ATTENDEES_LIST_TEST"], {"email" => self[:email]},
+                                    {"FNAME" => self[:first_name], "LNAME" => self[:last_name]}, 
+                                    "html", false, false, false, false)
+    end
 end
