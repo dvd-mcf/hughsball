@@ -19,7 +19,6 @@ class Admin::UsersController < Admin::BaseController
   end
   
   def update
-    old_email = @user.email
     new_params = user_params.dup
     new_params[:email] = new_params[:email].strip
     
@@ -41,8 +40,9 @@ class Admin::UsersController < Admin::BaseController
       @user.save
       redirect_to admin_users_path, notice: "#{@user.email} updated."
     else
-      flash[:alert] = "#{old_email} couldn't be updated."
-      render :edit
+      @errors = @user.errors
+      flash.now[:error] = @errors.full_messages[0]
+      render 'edit'
     end
   end
 
