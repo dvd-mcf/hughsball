@@ -35,7 +35,6 @@ class Ticket < ActiveRecord::Base
 
   private
     def subscribe_mailchimp
-          puts :email
           mailchimp = Mailchimp::API.new(ENV["MAILCHIMP_API_KEY"])
           mailchimp.lists.subscribe(ENV["ATTENDEES_LIST_TEST"], {"email" => self[:email]},
                                     {"FNAME" => self[:first_name], "LNAME" => self[:last_name]}, 
