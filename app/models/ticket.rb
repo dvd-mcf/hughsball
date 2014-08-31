@@ -11,7 +11,7 @@ class Ticket < ActiveRecord::Base
   # Validations
   validates :first_name, :last_name, :email, :user_id, presence: true
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  validates :wristband_id, uniqueness: true
+  validates :wristband_id, uniqueness: true, allow_nil: true
 
   # Pagination
   paginates_per 100
