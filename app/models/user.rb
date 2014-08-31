@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
+  include Capitalize
+
   # Maximum number of tickets permittable
   MAX_TICKETS = 4
+
+  before_validation :capitalize_names
+
 
   has_many :tickets, dependent: :destroy
   

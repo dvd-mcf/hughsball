@@ -1,4 +1,6 @@
 class Ticket < ActiveRecord::Base
+  include Capitalize
+
   belongs_to :user
   after_create :subscribe_mailchimp
   before_validation :capitalize_names
@@ -32,11 +34,6 @@ class Ticket < ActiveRecord::Base
   end
 
   private
-    def capitalize_names
-      self[:first_name] = self[:first_name].capitalize
-      self[:last_name] = self[:last_name].capitalize
-    end
-
     def subscribe_mailchimp
           puts :email
           mailchimp = Mailchimp::API.new(ENV["MAILCHIMP_API_KEY"])
