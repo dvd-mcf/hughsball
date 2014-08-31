@@ -42,6 +42,6 @@ class Ticket < ActiveRecord::Base
           mailchimp = Mailchimp::API.new(ENV["MAILCHIMP_API_KEY"])
           mailchimp.lists.subscribe(ENV["ATTENDEES_LIST_TEST"], {"email" => self[:email]},
                                     {"FNAME" => self[:first_name], "LNAME" => self[:last_name]}, 
-                                    "html", false, false, false, false)
+                                    "html", false, true, false, false)
     end
 end
