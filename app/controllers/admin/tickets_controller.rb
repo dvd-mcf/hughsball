@@ -22,8 +22,10 @@ class Admin::TicketsController < Admin::BaseController
     if @ticket.update_attributes(ticket_params)
       redirect_to admin_tickets_path, notice: "#{@ticket.user.email}'s ticket updated."
     else
-      flash[:alert] = "#{@ticket.user.email}'s ticket couldn't be updated."
-      render :edit
+#      flash[:alert] = "#{@ticket.user.email}'s ticket couldn't be updated."
+      @errors = @ticket.errors
+      flash.now[:error] = @errors.full_messages[0]
+      render 'edit'
     end
   end
 
