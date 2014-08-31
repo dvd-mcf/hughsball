@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20140831105254) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "wristband_id", default: "not assigned"
+    t.string   "wristband_id"
     t.string   "email"
   end
 
