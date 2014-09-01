@@ -64,7 +64,7 @@ class TicketsController < ApplicationController
     )
 
     for t in @tickets
-      t.save!
+      t.save(validate:false)
     end
 
     # add to mailing list
