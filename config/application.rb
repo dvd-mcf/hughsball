@@ -24,6 +24,8 @@ module Railstest
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
+    # load sidekiq workers
+    config.autoload_paths += %W(#{config.root}/app/workers)
     
     # enable compression
     config.middleware.use Rack::Deflater

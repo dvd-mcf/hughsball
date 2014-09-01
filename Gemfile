@@ -13,7 +13,7 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'jquery-turbolinks'
 gem 'figaro', '~> 0.7.0' 
 gem 'auto_strip_attributes'
-gem 'mailchimp-api', require: 'mailchimp'
+gem 'mailchimp-api', require: false
 gem 'sidekiq'
 
 

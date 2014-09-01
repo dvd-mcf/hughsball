@@ -67,12 +67,8 @@ class TicketsController < ApplicationController
       t.save(validate:false)
     end
 
-    # add to mailing list
-    mailchimp = Mailchimp::API.new(ENV["MAILCHIMP_API_KEY"])
-    mailchimp.lists.subscribe(ENV["POST_PURCHASE_LIST_TEST"], {"email" => current_user.email},
-                              {"FNAME" => current_user.first_name, "LNAME" => current_user.last_name,
-                               "COLLEGE" => current_user.college, "NUM_TICKET" => @curr_tickets + @num_tickets },
-                              "html", false, true, true, false)
+    # add to mailing list asynchronously with Sidekiq
+    MailchimpWorker.perform_async(@current_user.id, "post_purchase_list")
 
     redirect_to tickets_path
 

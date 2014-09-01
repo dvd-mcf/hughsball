@@ -36,9 +36,7 @@ class Ticket < ActiveRecord::Base
 
   private
     def subscribe_mailchimp
-          mailchimp = Mailchimp::API.new(ENV["MAILCHIMP_API_KEY"])
-          mailchimp.lists.subscribe(ENV["ATTENDEES_LIST_TEST"], {"email" => self[:email]},
-                                    {"FNAME" => self[:first_name], "LNAME" => self[:last_name]}, 
-                                    "html", false, true, false, false)
+      # add to mailing list asynchronously with Sidekiq
+      MailchimpWorker.perform_async(self[:id], "attendees_list")
     end
 end
