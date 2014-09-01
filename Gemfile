@@ -14,6 +14,7 @@ gem 'jquery-turbolinks'
 gem 'figaro', '~> 0.7.0' 
 gem 'auto_strip_attributes'
 gem 'mailchimp-api', require: 'mailchimp'
+gem 'sidekiq'
 
 
 group :doc do
@@ -33,6 +34,7 @@ gem 'font-awesome-sass', '~> 4.0.2'
 
 # Devise
 gem 'devise', '~> 3.2.2'
+gem 'devise-async'
 
 
 # Bootstrap 3
