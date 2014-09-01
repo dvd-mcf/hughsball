@@ -8,7 +8,7 @@
     <div class="col-sm-7">
       <h3>New Tickets </h3>
       <% if current_user.tickets.size  >= User::MAX_TICKETS%>
-        <p>You've already bought <strong> <%= current_user.tickets.size %> </strong> tickets, and can't buy any more. We look forward to welcoming you to the St Hugh's Ball 2015. </p>
+        <p>You've already bought <strong> <%= current_user.tickets.size %> </strong> tickets, and can't buy any more. We look forwards to seeing you at St Hugh's Ball. </p>
       <% else %>
         <p id="ticketInfo">You've bought <strong> <%= pluralize(current_user.tickets.size, 'ticket') %> </strong> and can still buy <strong> <%= User::MAX_TICKETS - current_user.tickets.size %> </strong> more. </p>
         <%= form_tag(tickets_path, method: "post", role: 'form') do %>
