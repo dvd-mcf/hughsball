@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('page:change', function() {
   under768();
   $(window).resize(function() {
     under768();
@@ -16,4 +16,3 @@ $(document).ready(function() {
     }
   }
 });
-

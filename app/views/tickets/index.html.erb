@@ -1,4 +1,6 @@
 <script src="https://checkout.stripe.com/checkout.js"></script>
+<%= javascript_include_tag "ticket" %>
+<% curr_tickets = current_user.tickets.size; max_tickets = User::MAX_TICKETS %>
 
 <div class="row">
   <div class="col-sm-12">
@@ -7,120 +9,37 @@
     <div class="container">
     <div class="col-sm-7">
       <h3>New Tickets </h3>
-      <% if current_user.tickets.size  >= User::MAX_TICKETS%>
-        <p>You've already bought <strong> <%= current_user.tickets.size %> </strong> tickets, and can't buy any more. We look forwards to seeing you at St Hugh's Ball. </p>
+      <% if curr_tickets  >= max_tickets %>
+        <%= content_tag "p", id: "ticketInfo", data: {
+          email: current_user.email,
+          discount: 0,
+          curr_tickets: curr_tickets,
+          max_tickets: max_tickets
+        } do %>
+          You've already bought <strong> <%= curr_tickets %> </strong> tickets, and can't buy any more. We look forwards to seeing you at St Hugh's Ball.
+        <% end %>
       <% else %>
-        <p id="ticketInfo">You've bought <strong> <%= pluralize(current_user.tickets.size, 'ticket') %> </strong> and can still buy <strong> <%= User::MAX_TICKETS - current_user.tickets.size %> </strong> more. </p>
+        <%= content_tag "p", id: "ticketInfo", data: { 
+          email: current_user.email,
+          discount: (current_user.college == "st-hughs" && curr_tickets == 0) ? 500 : 0, 
+          curr_tickets: curr_tickets,
+          max_tickets: max_tickets
+        } do %>
+             You've bought <strong> <%= pluralize(curr_tickets, 'ticket') %> </strong> and can still buy <strong> <%= max_tickets - curr_tickets %> </strong> more.
+        <% end %>
         <%= form_tag(tickets_path, method: "post", role: 'form') do %>
           <div id="ticketForm">
           </div>
         <% end %>
       <% end %>
     </div>
-    <div class="col-sm-5">
-      <% if current_user.tickets.any? %>
-        <h3> Purchased tickets (<%= current_user.tickets.count %>) </h3>
+    <% if curr_tickets != 0 %>
+      <div class="col-sm-5">
+        <h3> Purchased tickets (<%= curr_tickets %>) </h3>
         <ol class="tickets">
           <%= render current_user.tickets %>
         </ol>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
-
-<script type="text/javascript">
-  var  ordinals = ["Zeroth", "First", "Second", "Third", "Fourth", "Fifth"];
-
-  var  maxTickets = <%= User::MAX_TICKETS %>;
-  var  userTickets = <%= current_user.tickets.size %>;
-  var  currTickets = 0;
-  var  discount = 0;
-
-    function ticketCost() { return "<p id=\"ticketCost\">You're purchasing <span class=numTickets><strong>" + pluralizeTickets()  + "</strong></span>, which " + ((currTickets == 1) ? "costs" : "cost")   + "<strong> &pound" + (9000 * currTickets - discount) / 100.00 + "</strong>.</span></p>"; }
-  
-  var addTicketButton = "<a class=\"btn btn-success\" id=\"addTicketButton\">Add ticket<\/a>"
-
-  if ("<%= current_user.college %>" == "st-hughs" && !userTickets){
-     discount = 500;
-  }
-
-  if (currTickets + userTickets < maxTickets) {
-    $('#ticketForm').append("<p class=\"ticketButtons\">" + addTicketButton + "<\/p>");
-  }
-
-  function addRemoveButton() {
-    $('.ticketButtons').append("<a class=\"btn btn-danger\" id=\"removeTicketButton\">Remove ticket<\/a>");
-  };
-
-  function addTicketField() {
-    currTickets++;
-
-    var ticketForm = "<div id=\"ticketSubform" + currTickets + "\"><legend>" + ordinals[currTickets + userTickets] + " Ticket </legend> <div class=\"form-group\"> <label for=\"first_name_" + currTickets + "\">First name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][first_name] \" type=\"text\"\/> <\/div> <div class=\"form-group\"> <label for=\"last_name_" + currTickets + "\">Last name:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][last_name] \" type=\"text\"\/> <\/div> <div class=\"form-group\"> <label for=\"email" + currTickets + "\">Email:<\/label> <input class=\"form-control\" name=\"tickets[" + currTickets + "][email] \" type=\"text\"\/> <\/div><\/div>";
-
-    if (currTickets == 1) {
-      $('form').append("<p> <a class=\"btn btn-primary\", type=\"submit\", id=\"purchaseButton\">Purchase &raquo;</a> </p>");
-      $('#ticketInfo').append(ticketCost());
-    }
-    else {
-      $('#ticketCost').replaceWith(ticketCost());
-    }
-
-    $('#ticketForm').append(ticketForm);
-
-    if (currTickets == 1) {
-      addRemoveButton();
-    }
-    
-    if (userTickets + currTickets >= maxTickets) {
-      $('#addTicketButton').detach();
-    }
-  };
-
-  function pluralizeTickets() {
-    if (currTickets == 1){
-       return "1 ticket";
-    }
-    return currTickets + " tickets";
-  };
-
-  $('.ticketButtons').on("click", "#addTicketButton", function(){
-    addTicketField();
-  });
-
-  $('form').on('click', '#removeTicketButton', function(event) {
-    $('#ticketSubform' + currTickets).detach();
-    currTickets--;
-    if (!$('#addTicketButton').length) {
-      $('.ticketButtons').prepend(addTicketButton);
-    }
-    if (currTickets == 0) {
-      $('#purchaseButton').detach();
-      $('#ticketCost').detach();
-      $('#removeTicketButton').detach();
-    }
-    else {
-      $('#ticketCost').replaceWith(ticketCost());
-    }
-  });
-
-  $('form').on('click', '#purchaseButton', function(){
-    var token = function(res){
-      var $input = $('<input type=hidden name=stripeToken />').val(res.id);
-      $('form').append($input).submit();
-    };
-
-    StripeCheckout.open({
-      key:         'pk_test_9LtVL6Rlr6TxJaJld74wW4kO',
-      amount:      9000 * currTickets - discount,
-      name:        'St Hugh\'s Ball',
-      currency:    'GBP',
-      description: pluralizeTickets(),
-      panelLabel:  'Checkout',
-      email:       '<%= j current_user.email %>',
-      allowRememberMe: false,
-      token:       token
-    });
-    return false;
-  });
-</script>
-
