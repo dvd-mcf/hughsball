@@ -17,17 +17,20 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: ENV["pgsql_username"]
-  password: ENV["pgsql_password"]
+  username: <%= ENV["PG_USERNAME"] %>
+  password: <%= ENV["PG_PASSWORD"] %>
 
 development:
+  <<: *default
   database: hughsball_development
   pool: 5
 
 test:
+  <<: *default
   database: hughsball_test
   pool: 5
 
 production: 
+  <<: *default
   database: hughsball_production
   pool: 25
