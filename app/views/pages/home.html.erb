@@ -6,6 +6,7 @@
     <%= favicon_link_tag 'favicon.ico' %>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "scrollspy_refresh" %>
     <%= csrf_meta_tags %>
   </head>
   <header>
@@ -107,5 +108,3 @@
     <%= render 'layouts/footer' %>
   </body>
 </html>
-
-<script>$(document).ready(function(){$('body').scrollspy('refresh');});</script>
