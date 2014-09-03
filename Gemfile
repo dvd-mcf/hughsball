@@ -14,15 +14,11 @@ gem 'figaro', '~> 0.7.0'
 gem 'auto_strip_attributes'
 gem 'mailchimp-api', require: false
 gem 'sidekiq'
+gem 'pg'
 
 
 group :doc do
   gem 'sdoc', require: false
-end
-
-# development gems
-group :development, :test do
-  gem 'sqlite3'
 end
 
 # Paging
