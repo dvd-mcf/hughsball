@@ -1,4 +1,4 @@
-class MailchimpWorker
+class MailchimpSubscriber
   include Sidekiq::Worker
 
   def perform(id, type)

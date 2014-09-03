@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   MAX_TICKETS = 4
 
   before_validation :capitalize_names
-
+  after_update :mailchimp_unsubscribe
+  after_save :mailchimp_subscribe
 
   has_many :tickets, dependent: :destroy
   
@@ -63,4 +64,18 @@ class User < ActiveRecord::Base
     where("admin = ? AND locked = ?",false,false).count
   end
 
+  private
+   def mailchimp_unsubscribe
+     if self.tickets.length > 0
+       # has purchased tickets previously, so let's remove
+       MailchimpUnsubscriber.perform_async(self.email_was, "post_purchase_list")
+     end
+   end
+
+   def mailchimp_subscribe
+     if self.tickets.length > 0
+       # has purchased tickets previously, so let's add again
+       MailchimpSubscriber.perform_async(self.id, "post_purchase_list")
+     end
+   end
 end

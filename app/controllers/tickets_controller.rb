@@ -68,7 +68,7 @@ class TicketsController < ApplicationController
     end
 
     # add to mailing list asynchronously with Sidekiq
-    MailchimpWorker.perform_async(@current_user.id, "post_purchase_list")
+    MailchimpSubscriber.perform_async(@current_user.id, "post_purchase_list")
 
     redirect_to tickets_path
 

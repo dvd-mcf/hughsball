@@ -2,8 +2,9 @@ class Ticket < ActiveRecord::Base
   include Capitalize
 
   belongs_to :user
-  after_create :subscribe_mailchimp
+  after_save :subscribe_mailchimp
   before_validation :capitalize_names
+  after_update :remove_mailchimp
 
   # Strip whitespaces
   auto_strip_attributes :first_name, :last_name
@@ -37,6 +38,11 @@ class Ticket < ActiveRecord::Base
   private
     def subscribe_mailchimp
       # add to mailing list asynchronously with Sidekiq
-      MailchimpWorker.perform_async(self[:id], "attendees_list")
+      MailchimpSubscriber.perform_async(self[:id], "attendees_list")
+    end
+    
+    def remove_mailchimp
+      # remove from mailing list asynchronously with Sidekiq
+      MailchimpUnsubscriber.perform_async(self.email_was, "attendees_list")
     end
 end
