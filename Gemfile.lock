@@ -7,6 +7,13 @@ GIT
       mime-types (>= 1.25, < 3.0)
       rest-client (~> 1.4)
 
+GIT
+  remote: https://github.com/dvdhsu/turbolinks.git
+  revision: 2e553a9d80813d089e6ae574709675d87236dae3
+  specs:
+    turbolinks (2.3.0)
+      coffee-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -179,8 +186,6 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (2.3.0)
-      coffee-rails
     tzinfo (0.3.41)
     uglifier (2.4.0)
       execjs (>= 0.3.0)
@@ -216,5 +221,5 @@ DEPENDENCIES
   sidekiq
   stripe!
   thin
-  turbolinks
+  turbolinks!
   uglifier (~> 2.4.0)
