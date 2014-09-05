@@ -5,6 +5,7 @@ class Ticket < ActiveRecord::Base
   after_save :subscribe_mailchimp
   before_validation :capitalize_names
   after_update :unsubscribe_mailchimp
+  before_destroy :unsubscribe_mailchimp
 
   # Strip whitespaces
   auto_strip_attributes :first_name, :last_name
