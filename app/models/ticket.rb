@@ -4,7 +4,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :user
   after_save :subscribe_mailchimp
   before_validation :capitalize_names
-  after_update :remove_mailchimp
+  after_update :unsubscribe_mailchimp
 
   # Strip whitespaces
   auto_strip_attributes :first_name, :last_name
@@ -36,13 +36,13 @@ class Ticket < ActiveRecord::Base
   end
 
   private
+    def unsubscribe_mailchimp
+      # remove from mailing list asynchronously with Sidekiq
+      MailchimpUnsubscriber.perform_async(self.email_was, "attendees_list")
+    end
+
     def subscribe_mailchimp
       # add to mailing list asynchronously with Sidekiq
       MailchimpSubscriber.perform_async(self[:id], "attendees_list")
-    end
-    
-    def remove_mailchimp
-      # remove from mailing list asynchronously with Sidekiq
-      MailchimpUnsubscriber.perform_async(self.email_was, "attendees_list")
     end
 end
