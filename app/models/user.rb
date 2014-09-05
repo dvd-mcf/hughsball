@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   before_validation :capitalize_names
   after_update :subscribe_mailchimp
   after_save :unsubscribe_mailchimp
+  before_destroy :unsubscribe_mailchimp
 
   has_many :tickets, dependent: :destroy
   
