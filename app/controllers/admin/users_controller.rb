@@ -23,7 +23,15 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def create
-    @user = User.new(user_params)
+    @college_regex = /\A(.+)@(.+)\.ox\.ac\.uk\Z/
+
+    # if is Oxford email, set external_email to false; else, true.
+    if @college_regex.match(user_params[:email])
+      @user = User.new(user_params)
+    else
+      @user = User.new(user_params.merge(external_email: true))
+    end
+
     if @user.valid?
       @user.skip_confirmation!
       @user.save

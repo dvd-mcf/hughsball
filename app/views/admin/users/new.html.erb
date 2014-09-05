@@ -6,7 +6,7 @@
     <%= form_for [:admin, @user], :html => { :role => "form" } do |f| %>
 
       <div class="form-group">
-        <%= f.label :email %> <i><small>(must be from Oxford) </small></i>
+        <%= f.label :email %> <i><small>(Oxford preferred, if available) </small></i>
         <div class="row">
           <div class="col-sm-8">
             <%= f.email_field :email, class: "form-control", id:"emailField" %>
