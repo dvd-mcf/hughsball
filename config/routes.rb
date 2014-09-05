@@ -9,7 +9,12 @@ Railstest::Application.routes.draw do
   
   namespace :admin do
     root "base#index"
-    resources :users, :tickets
+
+    resources :users do
+      resources :tickets, only: [:new, :create]
+    end
+
+    resources :tickets, except: [:new, :create]
   end
   
 end

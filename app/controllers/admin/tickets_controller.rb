@@ -17,6 +17,24 @@ class Admin::TicketsController < Admin::BaseController
   
   def edit
   end
+
+  def new
+    @ticket = Ticket.new
+    @user = User.find(params[:user_id])
+  end
+
+  def create
+    @user = User.find(params[:user_id])
+    @ticket = Ticket.new(ticket_params.merge(user: @user))
+    if @ticket.valid?
+      @ticket.save
+      redirect_to admin_tickets_path, notice: "#{@ticket.user.email}'s ticket created."
+    else
+      @errors = @ticket.errors
+      flash.now[:error] = @errors.full_messages[0]
+      render 'new'
+    end
+  end
   
   def update
     if @ticket.update_attributes(ticket_params)
