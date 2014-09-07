@@ -1,3 +1,6 @@
-$(document).on('page:load', function() {
-  $('body').scrollspy('refresh');
-});
+function initialize() {
+ $('#home').scrollspy('refresh');
+}
+
+$(document).ready(initialize);
+$(document).on('page:load', initialize);
