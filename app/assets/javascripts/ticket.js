@@ -1,6 +1,6 @@
 $(document).ready(function(){
   var  ticketInfo = $('#ticketInfo');
-  var  ordinals = ["Zeroth", "First", "Second", "Third", "Fourth", "Fifth"];
+  var  ordinals = ["Zeroth", "First", "Second", "Third", "Fourth"];
   
   var  maxTickets = ticketInfo.data("max-tickets");
   var  userTickets = ticketInfo.data("curr-tickets");
