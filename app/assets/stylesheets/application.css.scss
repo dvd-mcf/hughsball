@@ -5,77 +5,9 @@
  *= require flatly
  */
 @import "bootstrap";
-
-$grayMediumLight: #eaeaea;
-
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid $grayMediumLight;
-  color: gray-light;
-  a {
-    color: $gray;
-    &:hover {
-      color: $gray-darker;
-    }
-  }
-  small {
-    float: left;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 10px;
-    }
-  }
-}
-
-body { 
-  padding-top: 50px;
-  position: relative;
-}
-
-.form-group {
-  margin-left: 10px;
-}
-
-#addTicketButton{
-  margin-right: 15px;
-  width: 128px;
-}
-
-/* Featurettes
-------------------------- */
-
-@media screen and (min-width: 768px) {
-  .featurette-divider {
-    margin: 40px 0; /* Space out the Bootstrap <hr> more */
-  }
-  .featurette {
-    padding-top: 80px;
-    margin-top: -50px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .featurette-image { 
-    margin-bottom: 21px;
-    margin-top: 21px;
-  }
-
-  .jumbotron {
-    margin-bottom: 0px !important;
-  }
-}
-
-/* Thin out the marketing headings */
-.featurette-heading {
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -1px;
-}
+@import "footer";
+@import "body";
+@import "form_group";
 
 #homeButton {
   position:none;
@@ -85,8 +17,4 @@ body {
   margin-bottom:0;
   margin-left:none;
   border:none;
-}
-
-#ticketForm {
-  padding-top: 4px;
 }

@@ -1,0 +1,30 @@
+/* Featurettes
+------------------------- */
+
+@media screen and (min-width: 768px) {
+  .featurette-divider {
+    margin: 40px 0; /* Space out the Bootstrap <hr> more */
+  }
+  .featurette {
+    padding-top: 80px;
+    margin-top: -50px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .featurette-image { 
+    margin-bottom: 21px;
+    margin-top: 21px;
+  }
+
+  .jumbotron {
+    margin-bottom: 0px !important;
+  }
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}

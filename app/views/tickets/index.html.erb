@@ -1,5 +1,7 @@
 <script src="https://checkout.stripe.com/checkout.js"></script>
 <%= javascript_include_tag "ticket" %>
+<%= stylesheet_link_tag "ticket", media: "all", "data-turbolinks-track" => true %>
+
 <% curr_tickets = current_user.tickets.size; max_tickets = User::MAX_TICKETS %>
 
 <div class="row">
