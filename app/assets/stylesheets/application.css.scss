@@ -4,17 +4,8 @@
  *= require_self
  *= require flatly
  */
+
 @import "bootstrap";
 @import "footer";
 @import "body";
 @import "form_group";
-
-#homeButton {
-  position:none;
-  float:left;
-  margin-right:0;
-  margin-top:0;
-  margin-bottom:0;
-  margin-left:none;
-  border:none;
-}
