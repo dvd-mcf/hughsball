@@ -1,5 +1,6 @@
-<div class="row">
-  <div class="col-sm-8 ">
+<div class="container">
+	<div class="row">
+  <div class="col-xs-12 col-sm-6">
     <h1>Sign in</h1>
 
     <%= form_for(resource, :as => resource_name,
@@ -37,9 +38,18 @@
           <%= f.submit "Sign in", class: "btn btn-primary" %>
         </div>
       </div>
+	  
       <% end %>
 
       <%= render "devise/shared/links" %>
 
+
+
     </div>
+	<div class="hidden-xs col-sm-6">
+	  <div  id="signupbox">
+	<p id= "signuptext" class="pagination-centered"> Sign in here to access your account details and order tickets as soon as they're released.</p>
+	</div>
+	  </div>
   </div>
+</div>

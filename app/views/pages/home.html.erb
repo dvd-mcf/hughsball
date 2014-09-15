@@ -1,111 +1,169 @@
 <!DOCTYPE html>
-<html>
+<html class="max wide normal narrow narrower mobile">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title><%= @title || "St Hugh's Ball" %></title>
-    <%= favicon_link_tag 'favicon.ico' %>
+    <%= favicon_link_tag 'favicontree.ico' %>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
+	
+	<noscript>
+		<link rel="stylesheet" href="stylesheets/skel.css" />
+		<link rel="stylesheet" href="stylesheets/style.css" />
+		<link rel="stylesheet" href="stylesheets/style-wide.css" />
+		<link rel="stylesheet" href="stylesheets/style-normal.css" />
+	</noscript>
+	
   </head>
-  <header>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a id="homeButton" class="navbar-brand navbar-toggle" href="#">Home</a>
-        </div>
-        <div class="hidden-xs collapse navbar-collapse navbar-left">
-          <ul class="nav navbar-nav">
-            <li><%= link_to 'Home', '#home', class: 'navbar-brand' %> </li>
-            <li><a href="#food">Food</a></li>
-            <li><a href="#drinks">Drinks</a></li>
-            <li><a href="#enter">Entertainment</a></li>
-          </ul>
-        </div>
-        <div class="collapse navbar-collapse navbar-right">
-          <ul class="nav navbar-nav">
-            <%= render 'layouts/navigation_links' %>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
+	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+	
+	<body data-spy="scroll" data-target = ".nav" data-offset="100" id="home" class style="opacity: 1;">
 
-  <body data-spy="scroll" data-target = ".navbar" data-offset="100" id="home">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-sm-offset-2 text-center">
-          <%= render 'layouts/messages' %>
-        </div>
-      </div>
-    </div>
-    <div class="jumbotron">
-      <div class="container">
-        <h1>St Hugh's Ball </h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo. </p>
-    <%= link_to "Register!", new_user_registration_path, class: "btn btn-large btn-primary" %>
-        <br>
-      </div>
-    </div>
+		<!-- Header -->
+		    <header>
+		      <nav class="navbar navbar-inverse navbar-fixed-top">
+		        <div class="container">
+		          <div class="navbar-header">
+		            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		              <span class="sr-only">Toggle navigation</span>
+		              <span class="icon-bar"></span>
+		              <span class="icon-bar"></span>
+		              <span class="icon-bar"></span>
+		            </button>
+		            <a data-no-id="homeButton" class="navbar-brand navbar-toggle" href="#">St Hugh's Ball</a>
+		          </div>
+				  
+		          <div class="hidden-xs collapse navbar-collapse navbar-left">
+		            <ul class="nav navbar-nav">
+		              <li><%= link_to 'St Hugh\'s Ball', '#intro', class: 'navbar-brand' %> </li>
+							<li><a href="#one">The Enchanted Forest</a></li>
+							<li><a href="#work">The Committee</a></li>
+							<li><a href="#two">Sponsorship</a></li>
+		            </ul>
+		          </div>
+		          <div class="collapse navbar-collapse navbar-right">
+		            <ul class="nav navbar-nav">
+		              <%= render 'layouts/navigation_links' %>
+		            </ul>
+		          </div>
+		        </div>
+		      </nav>
+							
 
-    <div class="container"> 
-      <div class="row featurette" id="food">
-        <div class="col-sm-7">
-          <h2 class="featurette-heading">Food. <span class="text-muted">It'll blow your mind.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-sm-5">
-          <img class="featurette-image img-responsive" src="http://lorempixel.com/350/350/cats/10" alt="Generic placeholder image">
-        </div>
-      </div>
+			</header>
 
-      <hr class="featurette-divider">
+		<!-- Intro -->
+			<section id="intro" class="main style1 dark fullscreen">
+				<div class="content container medium">
+					<header>
+						<%= image_tag "whitelogo.png", :class => "img-responsive image fit", :id=> "blacklogo" %>
+					</header>
+					<footer id="topfooter">
+						<a href="#one" class="button style2 down">More</a>
+					</footer>
+				</div>
+			</section>
+		
+		<!-- One -->
+			<section id="one" class="main style2 right dark fullscreen">
+				<div class="content box style2">
+					<header>
+						<h2>The Enchanted Forest</h2>
+					</header>
+					<p>St Hugh’s is delighted to invite you to an evening of magic and mystery at our Enchanted Forest Ball.
+ Prepare to be entranced by bewitching music, woodland delicacies, and Mother Nature’s finest beverages in an Oxford glade canopied with trees and lit by the moon and stars.<br><br>
+ While Hugh’s can only promise you a ball for one night, once you’ve been enchanted, you’ll never want to leave…</p>
+				</div>
+				<a href="#work" class="button style2 down anchored">Next</a>
+			</section>
+		
+		
+			
+		<!-- Work -->
+			<section id="work" class="main style3 primary">
+				<div class="content container">
+					<header>
+						<h2>The Committee</h2>
+					
+					</header>
+					
+					<!-- Lightbox Gallery  -->
+						<div class="container small gallery">
+							<div class="row flush images">
+								<div class="6u"><a href="images/fulls/01.jpg" class="image fit from-left"><img src="assets/thumbs/01.jpg" title="The Anonymous Red" alt="" /></a></div>
+								<div class="6u"><a href="images/fulls/02.jpg" class="image fit from-right"><img src="assets/thumbs/02.jpg" title="Airchitecture II" alt="" /></a></div>
+							</div>
+							<div class="row flush images">
+								<div class="6u"><a href="images/fulls/03.jpg" class="image fit from-left"><img src="assets/thumbs/03.jpg" title="Air Lounge" alt="" /></a></div>
+								<div class="6u"><a href="images/fulls/04.jpg" class="image fit from-right"><img src="assets/thumbs/04.jpg" title="Carry on" alt="" /></a></div>
+							</div>
+							<div class="row flush images">
+								<div class="6u"><a href="images/fulls/05.jpg" class="image fit from-left"><img src="assets/thumbs/05.jpg" title="The sparkling shell" alt="" /></a></div>
+								<div class="6u"><a href="images/fulls/06.jpg" class="image fit from-right"><img src="assets/thumbs/06.jpg" title="Bent IX" alt="" /></a></div>
+							</div>
+						</div>
 
-      <div class="row featurette" id="drinks">
-        <div class="col-sm-5">
-          <img class="featurette-image img-responsive" src="http://lorempixel.com/350/350/cats/3" alt="Generic placeholder image">
-        </div>
-        <div class="col-sm-7">
-          <h2 class="featurette-heading">Drinks. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-      </div>
+				</div>
+			</section>
+					<!-- Two -->
+						<section id="two" class="main style2 left dark fullscreen">
+							<div class="content box style2">
+								<header>
+									<h2>Sponsorship</h2>
+								</header>
+								<p>If you'd like information about sponsoring St Hugh's Ball, contact us <a href="mailto:sponsorship@sthughsball.com?Subject=Sponsorship" target="_top">
+			here</a>.</p>
+							</div>
+							<a href="#contact" class="button style2 down anchored">Next</a>
+						</section>
+			
+		<!-- Sign Up -->
+			<section id="contact" class="main style3 secondary">
+				<div class="content container">
+					<header>
+						
+					</header>
+					<div class="box container small">
+					
+					<!-- Sign Up Form -->
+							<form method="post" action="#">
+									<h2>Sign Up</h2>
+									<p>Create an account now to be first in line when tickets are released.</p>
+								
+								<div class="row">
+									<div class="12u">
+										<ul class="actions">
+											<li class= "dButton" id="signupbutton"><%= link_to "CREATE AN ACCOUNT", new_user_registration_path, id: 'signupbutton' %></li>
+										</ul>
+									</div>
+								</div>
+							</form>
 
-      <hr class="featurette-divider">
+					</div>
+				</div>
+			</section>
+			
+		<!-- Footer -->
+			<footer id="footer">
 
-      <div class="row featurette" id="enter">
-        <div class="col-sm-7">
-          <h2 class="featurette-heading">Entertainment. <span class="text-muted">Oh yeah, it's that good.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-sm-5">
-          <img class="featurette-image img-responsive" src="http://lorempixel.com/350/350/cats/4" alt="Generic placeholder image">
-        </div>
-      </div>
+				<!-- Icons -->
+					<ul class="actions">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+						<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+						<li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+										<li>&copy; dvdhsu/maccaca,	Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
 
-      <hr class="featurette-divider">
+				<!-- Menu -->
+				
+			
+			</footer>
 
-      <div class="row featurette">
-        <div class="col-sm-5">
-          <img class="featurette-image img-responsive" src="http://lorempixel.com/350/350/cats/5" alt="Generic placeholder image">
-        </div>
-        <div class="col-sm-7">
-          <h2 class="featurette-heading" id="music">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-    </div>
-    
-    <%= render 'layouts/footer' %>
-  </body>
+	</body>
 </html>
 
 <script>$(document).ready(function(){$('body').scrollspy('refresh');});</script>

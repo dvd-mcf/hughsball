@@ -11,8 +11,15 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
+
+//= require jquery.poptrox.min.js
+//= require jquery.scrolly.min.js
+//= require jquery.scrollgress.min.js
+//= require skel.min.js
+//= init.js
+
+
 //= require bootstrap
+
 //= require_tree .
